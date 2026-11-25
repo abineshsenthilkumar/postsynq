@@ -5,9 +5,9 @@
 [build]
   command = "npm run build"
   publish = ".next"
-  # Only rebuild when something in website/ changed (the rest of the repository
-  # is the PostSynq app, deployed separately on Railway).
-  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- ."
+  # No "ignore" rule: this repository holds only the website, and a
+  # `git diff $CACHED_COMMIT_REF $COMMIT_REF` rule skips a branch's very first
+  # build (both refs are the same commit), leaving nothing published.
 
 [build.environment]
   NODE_VERSION = "22"
