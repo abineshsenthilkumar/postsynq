@@ -1,0 +1,25 @@
+# dependencies
+node_modules
+
+# Next.js build output
+.next
+out
+next-env.d.ts.bak
+*.tsbuildinfo
+
+# environment - never commit real values (see .env.example)
+.env
+.env*.local
+
+# visual audit output (regenerate with visual-audit/scripts/capture.mjs)
+visual-audit/reference/
+visual-audit/localhost/
+visual-audit/comparison/
+visual-audit/*.txt
+visual-audit/links-before/
+visual-audit/footer/before-pages/
+visual-audit/footer/comparison/
+
+# OS / editor
+.DS_Store
+Thumbs.db

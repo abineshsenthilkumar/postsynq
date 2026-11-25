@@ -1,0 +1,18 @@
+# Netlify build settings for the PostSynq marketing website (Next.js 15).
+# In the Netlify site settings set "Base directory" to `website`; everything
+# below is relative to it. Netlify detects Next.js and adds its Next.js runtime
+# automatically (pages are served from its CDN, /api/newsletter runs as a function).
+[build]
+  command = "npm run build"
+  publish = ".next"
+  # Only rebuild when something in website/ changed (the rest of the repository
+  # is the PostSynq app, deployed separately on Railway).
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- ."
+
+[build.environment]
+  NODE_VERSION = "22"
+  NEXT_TELEMETRY_DISABLED = "1"
+
+# Environment variables to set in the Netlify UI (never commit values):
+#   NEWSLETTER_WEBHOOK_URL  receives footer newsletter sign-ups; unset = the form
+#                           says sign-up is unavailable (never a fake success).

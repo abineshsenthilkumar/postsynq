@@ -1,0 +1,29 @@
+/*
+ * Site-level additions on top of the generated Framer stylesheet
+ * (app/_framer/framer.css). Keep this small and scoped.
+ */
+
+/* Logo ticker (About page). Framer's runtime ticker, measured on the published
+   site at ~15px/s leftwards; each item moves by its own width + gap, so the
+   cloned items loop seamlessly at every breakpoint. */
+[data-ticker] > li {
+  flex-shrink: 0;
+  animation: ps-ticker 95s linear infinite;
+}
+@keyframes ps-ticker {
+  to { transform: translateX(calc(-100% - var(--ticker-gap, 0px))); }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-ticker] > li { animation: none; }
+}
+
+/* Newsletter form result (app/_components/FormHandler.tsx). */
+[data-form-status] {
+  margin: 8px 0 0;
+  font-family: "Onest", "Onest Placeholder", sans-serif;
+  font-size: 13px;
+  line-height: 1.4;
+  color: rgb(65, 87, 98);
+}
+[data-form-status][data-state="error"] { color: rgb(196, 48, 43); }
+form[data-framer-form][data-state="loading"] { opacity: 0.7; pointer-events: none; }
